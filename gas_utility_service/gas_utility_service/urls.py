@@ -22,9 +22,11 @@ from service_requests.views import ServiceRequestViewSet
 from django.conf import settings
 from django.conf.urls.static import static
 
+# Register viewset with router
 router = DefaultRouter()
 router.register(r'service-requests', ServiceRequestViewSet, basename='service-request')
 
+# Combine API and admin routes
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include(router.urls)),

@@ -16,14 +16,14 @@ class ServiceRequest(models.Model):
         ('CLOSED','Closed'),
     ]
 
-    customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='service_requests')
-    service_type = models.CharField(max_length=20, choices=Service_type, default='OTHER')
-    description = models.TextField()
-    attachment = models.FileField(upload_to='attachments/', null=True, blank=True)
-    status = models.CharField(max_length=20, choices=Status_Choice, default='PENDING')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-    resolved_at = models.DateTimeField(null=True, blank=True)
+    customer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='service_requests')  # user who submitted
+    service_type = models.CharField(max_length=20, choices=Service_type, default='OTHER')          # type of issue
+    description = models.TextField()                                                               # details of the request
+    attachment = models.FileField(upload_to='attachments/', null=True, blank=True)                # optional attachment
+    status = models.CharField(max_length=20, choices=Status_Choice, default='PENDING')           # request status
+    created_at = models.DateTimeField(auto_now_add=True)                                          # creation timestamp
+    updated_at = models.DateTimeField(auto_now=True)                                              # last update timestamp
+    resolved_at = models.DateTimeField(null=True, blank=True)                                     # when it was resolved
 
     def __str__(self):
         return f"{self.customer.username} - {self.get_service_type_display()} ({self.status})"

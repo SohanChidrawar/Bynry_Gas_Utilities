@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from .models import ServiceRequest
 
+# Serializer to convert ServiceRequest model into JSON
 class ServiceRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = ServiceRequest
